@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shaurya Venkta — Portfolio</title>
+  <style>
+    /* Simple, sober, basic CSS with muted-teal color */
+    html,body{height:100%;}
+    body{font-family:Arial, Helvetica, sans-serif;line-height:1.5;color:#123;background:#fff;margin:0;padding:0}
+    .container{max-width:900px;margin:0 auto;padding:20px}
+
+    /* Header: only brand & tagline (no nav links) */
+    header{padding:18px 0;border-bottom:1px solid #e6efec}
+    .brand{font-size:20px;font-weight:700;color:#0b6b63}
+    .tagline{font-size:13px;color:#4f7d78;margin-top:4px}
+
+    main{padding:24px 0}
+    .hero{padding:20px 0}
+    .hero h1{font-size:30px;margin:0 0 8px 0;color:#0b6b63}
+    .hero p{margin:0 0 16px 0;color:#333}
+    .buttons a{display:inline-block;padding:8px 12px;margin-right:8px;background:#0b6b63;color:#fff;text-decoration:none;border-radius:4px;font-weight:600}
+    .buttons a.secondary{background:#eef7f5;color:#0b6b63;border:1px solid #d9efe9}
+
+    section{margin-top:28px}
+    h2{font-size:18px;margin:0 0 10px 0;color:#0b6b63}
+    p{margin:0 0 10px 0;color:#333}
+
+    .row{display:flex;flex-wrap:wrap;gap:12px}
+    .col{flex:1 1 260px;background:#fbfdfc;border:1px solid #eef7f6;padding:12px;border-radius:4px}
+    .col strong{color:#0b6b63}
+
+    footer{margin-top:32px;padding:20px 0;border-top:1px solid #e6efec;color:#666;font-size:14px}
+
+    /* Small screens */
+    @media (max-width:600px){
+      .brand{font-size:18px}
+      .hero h1{font-size:22px}
+      .row{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">Shaurya Venkta</div>
+      <div class="tagline">Data Scientist • Full Stack Developer</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <h1>Hi, I’m Shaurya — I build data-driven applications</h1>
+      <p>I work at the intersection of signal processing (FFT), machine learning, and full-stack engineering to create practical, production-ready solutions.</p>
+      <div class="buttons">
+        <a href="#projects">View Projects</a>
+        <a class="secondary" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>Motivated BCA graduate with experience in data analysis, signal processing, and building full-stack applications. Comfortable with Python, JavaScript, and common web and data tools.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="row">
+        <div class="col">
+          <strong>Data Science</strong>
+          <p>Python, NumPy, Pandas, SciPy, scikit-learn, FFT/time-series analysis</p>
+        </div>
+        <div class="col">
+          <strong>Frontend</strong>
+          <p>HTML, CSS, JavaScript, React, responsive design</p>
+        </div>
+        <div class="col">
+          <strong>Backend</strong>
+          <p>Node.js, Express, REST APIs, MongoDB, deployment basics</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="row">
+        <div class="col">
+          <strong>FFT-based Signal Analyzer</strong>
+          <p>Tool for frequency analysis and simple filtering of time-series data.</p>
+        </div>
+        <div class="col">
+          <strong>Real-time Chat App</strong>
+          <p>Full-stack chat using WebSockets, with authentication and persistence.</p>
+        </div>
+        <div class="col">
+          <strong>Personal Portfolio</strong>
+          <p>Simple responsive site showcasing projects and resume.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>If you'd like to collaborate or see details, email: <a href="mailto:shauryavenkta31@gmail.com">shauryavenkta31@gmail.com</a></p>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Shaurya Venkta</p>
+    </footer>
+  </main>
+</body>
+</html>
