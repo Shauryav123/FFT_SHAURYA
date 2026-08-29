@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #eef2ff 100%);
+            color: #1f2937;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #dfe3ee;
+            border-radius: 12px;
+            background-color: #ffffff;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 120px minmax(0, 1fr);
+            align-items: center;
+            justify-content: center;
+            column-gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .row label {
+            text-align: left;
+            margin: 0;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 0;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background: #fff;
+            color: #111827;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+            outline: none;
+        }
+
+        .gender-options {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 50%;
+            text-align: left;
+            box-sizing: border-box;
+            color: #374151;
+        }
+
+        .gender-options label {
+            width: auto;
+            position: relative;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .submit-row {
+            justify-content: center;
+            display: flex;
+            gap: 10px;
+            color: #fff;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        input[type="submit"] {
+            background: #4f46e5;
+            color: #ffffff;
+        }
+
+        input[type="reset"] {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
+        textarea.form-control {
+            min-height: 90px;
+            resize: vertical;
+        }
+         
+        </style>
+</head>
+<body>
+    
+    <form method="post">
+        <h1>Student Registration Form</h1>
+        <div class="row">
+            <label for="Registration_id">Registration ID:</label>
+            <input type="number" id="Registration_id" name="Registration_id" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="gender">Gender:</label>
+            <div class="gender-options">
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+                <input type="radio" id="others" name="gender" value="others" required>
+                <label for="others">Others</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="College">College:</label>
+            <input type="text" id="College" name="College" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="Department">Department:</label>
+            <input type="text" id="Department" name="Department" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="course">Course:</label>
+            <select id="course" name="course" required class="form-control">
+                <option value="">Select a course</option>
+                <optgroup label="Computer Science">
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                </optgroup>
+                <optgroup label="Medical">
+                    <option value="MBBS">MBBS</option>
+                    <option value="BDS">BDS</option>
+                </optgroup>
+                <optgroup label="Science">
+                    <option value="B.Sc">B.Sc</option>
+                    <option value="M.Sc">M.Sc</option>
+                </optgroup>
+                <optgroup label="Arts">
+                    <option value="B.A">B.A</option>
+                    <option value="M.A">M.A</option>
+                </optgroup>
+                <optgroup label="Commerce">
+                    <option value="B.Com">B.Com</option>
+                    <option value="M.Com">M.Com</option>
+                </optgroup>
+                <optgroup label="Business">
+                    <option value="BBA">BBA</option>
+                    <option value="MBA">MBA</option>
+                </optgroup>
+                <optgroup label="Engineering">
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="M.Tech">M.Tech</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="Section">Section:</label>
+            <input type="text" id="Section" name="Section" required class="form-control">
+        </div>
+
+        <div class="row">
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester" required class="form-control">
+                <option value="">Select a semester</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" cols="50" required class="form-control"></textarea>
+        </div>
+
+        <div class="row">
+            <label for="Resume">Resume:</label>
+            <input type="file" id="Resume" name="Resume" accept=".pdf,.doc,.docx" required class="form-control">
+        </div>
+
+        <div class="row submit-row">
+            <input type="submit" value="Register">
+        </div>
+
+        <div class="row submit-row">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</body>
+</html>
