@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #eee5ff;
+        }
+
+        .card {
+            width: 340px;
+            padding: 35px 25px;
+            text-align: center;
+            background: white;
+            border: 4px solid #9b5de5;
+            border-radius: 18px;
+            box-shadow: 0 8px 15px #b79ced;
+            animation: appear 1s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px #8a4dcc;
+        }
+
+        .balloons {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            animation: float 2s infinite alternate;
+        }
+
+        h1 {
+            margin: 18px 0 10px;
+            color: #7b2cbf;
+            font-size: 36px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .cake {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 20px auto;
+            animation: bounce 1.5s infinite;
+        }
+
+        .wish {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 20px;
+            color: white;
+            background: #7b2cbf;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .wish:hover {
+            background: #5a189a;
+            transform: scale(1.08);
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <img class="balloons" src="Images/Ballons.webp" alt="Birthday balloons">
+        <h1>Happy Birthday!</h1>
+        <img class="cake" src="Images/Birthday Cake.webp" alt="Birthday cake">
+        <p>Wishing you a day filled with happiness, laughter, and wonderful memories!</p>
+        <span class="wish">Have a fantastic day!</span>
+    </main>
+</body>
+</html>
