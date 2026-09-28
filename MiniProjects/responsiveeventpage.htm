@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechConnect 2026 | College Technology Event</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        color: #243047;
+      }
+
+      header, footer {
+        padding: 20px 7%;
+        background: #172554;
+        color: white;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      nav a {
+        margin-left: 15px;
+        color: white;
+      }
+
+      .hero {
+        padding: 60px 7%;
+        background: #dbeafe;
+        text-align: center;
+      }
+
+      .hero h1 {
+        color: #172554;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 10px 18px;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+      }
+
+      main {
+        width: 86%;
+        margin: 30px auto;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: #172554;
+        text-align: center;
+      }
+
+      .details, .speakers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .card, .register, .contact {
+        padding: 20px;
+        background: white;
+        border: 1px solid #dbe2ee;
+        text-align: center;
+      }
+
+      .card h3 {
+        color: #2563eb;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 600px;
+        border-collapse: collapse;
+        background: white;
+      }
+
+      th, td {
+        padding: 10px;
+        border: 1px solid #dbe2ee;
+        text-align: left;
+      }
+
+      th {
+        background: #dbeafe;
+      }
+
+      .register, .contact {
+        max-width: 760px;
+        margin: 0 auto 40px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        text-align: left;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+      }
+
+      .form-wide {
+        grid-column: 1 / 3;
+      }
+
+      form .button {
+        border: 0;
+        margin: auto;
+      }
+
+      .contact a {
+        color: #2563eb;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      @media (max-width: 650px) {
+        nav, .details, .speakers, form {
+          display: block;
+        }
+
+        nav a {
+          display: inline-block;
+          margin: 10px 8px 0 0;
+        }
+
+        .card {
+          margin-bottom: 15px;
+        }
+
+        .form-wide {
+          margin-top: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main navigation">
+        <div class="logo">TechConnect 2026</div>
+        <div>
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#speakers">Speakers</a>
+          <a href="#register">Register</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="event-title">
+      <h1 id="event-title">Build. Learn. Connect.</h1>
+      <p>
+        Join students, developers, and technology enthusiasts for a day of
+        talks, workshops, and new ideas.
+      </p>
+      <a class="button" href="#register">Register Now</a>
+    </section>
+
+    <main>
+      <section id="about">
+        <h2>Event Details</h2>
+        <div class="details">
+          <div class="card">
+            <h3>Date</h3>
+            <p>Saturday, October 17, 2026</p>
+          </div>
+          <div class="card">
+            <h3>Time</h3>
+            <p>9:00 AM - 5:00 PM</p>
+          </div>
+          <div class="card">
+            <h3>Venue</h3>
+            <p>Innovation Hall, Bengaluru</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="schedule">
+        <h2>Schedule</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Session</th>
+                <th scope="col">Venue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09:00 AM</td>
+                <td>Registration and welcome</td>
+                <td>Main Lobby</td>
+              </tr>
+              <tr>
+                <td>10:00 AM</td>
+                <td>Keynote: The future of technology</td>
+                <td>Auditorium</td>
+              </tr>
+              <tr>
+                <td>12:00 PM</td>
+                <td>Hands-on development workshops</td>
+                <td>Lab 1 and Lab 2</td>
+              </tr>
+              <tr>
+                <td>03:00 PM</td>
+                <td>Panel discussion and networking</td>
+                <td>Auditorium</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="speakers">
+        <h2>Featured Speakers</h2>
+        <div class="speakers">
+          <article class="card speaker-card">
+            <h3>Ananya Rao</h3>
+            <p>Product Engineer, CloudWorks</p>
+          </article>
+          <article class="card speaker-card">
+            <h3>Rohan Mehta</h3>
+            <p>Founder, BuildBetter Labs</p>
+          </article>
+          <article class="card speaker-card">
+            <h3>Priya Nair</h3>
+            <p>Developer Advocate, OpenTech</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="register" class="register">
+        <h2>Register for the Event</h2>
+        <p>Reserve your seat today. Entry is free for all registered attendees.</p>
+        <form action="mailto:events@example.com" method="post" enctype="text/plain">
+          <label>
+            Full name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Email address
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="form-wide">
+            Attendance type
+            <select name="attendance">
+              <option>Student</option>
+              <option>Developer</option>
+              <option>Technology enthusiast</option>
+            </select>
+          </label>
+          <button class="button form-wide" type="submit">Submit Registration</button>
+        </form>
+      </section>
+
+      <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>
+          Have a question about the event?
+          <a href="mailto:events@example.com">events@example.com</a>
+        </p>
+        <p>We look forward to connecting with you at TechConnect 2026.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TechConnect. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

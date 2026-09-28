@@ -1,112 +1,249 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shaurya Venkta — Portfolio</title>
-  <style>
-    /* Simple, sober, basic CSS with muted-teal color */
-    html,body{height:100%;}
-    body{font-family:Arial, Helvetica, sans-serif;line-height:1.5;color:#123;background:#fff;margin:0;padding:0}
-    .container{max-width:900px;margin:0 auto;padding:20px}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shaurya Venkta | Portfolio</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-    /* Header: only brand & tagline (no nav links) */
-    header{padding:18px 0;border-bottom:1px solid #e6efec}
-    .brand{font-size:20px;font-weight:700;color:#0b6b63}
-    .tagline{font-size:13px;color:#4f7d78;margin-top:4px}
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #123;
+        background: #f5fbfa;
+      }
 
-    main{padding:24px 0}
-    .hero{padding:20px 0}
-    .hero h1{font-size:30px;margin:0 0 8px 0;color:#0b6b63}
-    .hero p{margin:0 0 16px 0;color:#333}
-    .buttons a{display:inline-block;padding:8px 12px;margin-right:8px;background:#0b6b63;color:#fff;text-decoration:none;border-radius:4px;font-weight:600}
-    .buttons a.secondary{background:#eef7f5;color:#0b6b63;border:1px solid #d9efe9}
+      header {
+        padding: 20px 8%;
+        background: #0b6b63;
+        color: white;
+      }
 
-    section{margin-top:28px}
-    h2{font-size:18px;margin:0 0 10px 0;color:#0b6b63}
-    p{margin:0 0 10px 0;color:#333}
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    .row{display:flex;flex-wrap:wrap;gap:12px}
-    .col{flex:1 1 260px;background:#fbfdfc;border:1px solid #eef7f6;padding:12px;border-radius:4px}
-    .col strong{color:#0b6b63}
+      nav a {
+        margin-left: 15px;
+        color: white;
+        text-decoration: none;
+      }
 
-    footer{margin-top:32px;padding:20px 0;border-top:1px solid #e6efec;color:#666;font-size:14px}
+      nav a:hover {
+        color: #c9fff5;
+      }
 
-    /* Small screens */
-    @media (max-width:600px){
-      .brand{font-size:18px}
-      .hero h1{font-size:22px}
-      .row{flex-direction:column}
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="brand">Shaurya Venkta</div>
-      <div class="tagline">Data Scientist • Full Stack Developer</div>
-    </div>
-  </header>
+      .container {
+        width: 84%;
+        max-width: 1000px;
+        margin: auto;
+      }
 
-  <main class="container">
-    <section id="home" class="hero">
-      <h1>Hi, I’m Shaurya — I build data-driven applications</h1>
-      <p>I work at the intersection of signal processing (FFT), machine learning, and full-stack engineering to create practical, production-ready solutions.</p>
-      <div class="buttons">
-        <a href="#projects">View Projects</a>
-        <a class="secondary" href="#contact">Get in touch</a>
-      </div>
-    </section>
+      .hero {
+        padding: 70px 0;
+        animation: show 1s ease;
+      }
 
-    <section id="about">
-      <h2>About</h2>
-      <p>Motivated BCA graduate with experience in data analysis, signal processing, and building full-stack applications. Comfortable with Python, JavaScript, and common web and data tools.</p>
-    </section>
+      .hero h1 {
+        margin: 0 0 10px;
+        color: #0b6b63;
+        font-size: 38px;
+      }
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="row">
-        <div class="col">
-          <strong>Data Science</strong>
-          <p>Python, NumPy, Pandas, SciPy, scikit-learn, FFT/time-series analysis</p>
+      .hero p {
+        max-width: 700px;
+      }
+
+      .button {
+        display: inline-block;
+        margin: 10px 8px 0 0;
+        padding: 10px 16px;
+        background: #0b6b63;
+        color: white;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .button:hover {
+        background: #084f4a;
+      }
+
+      section {
+        margin: 40px 0;
+      }
+
+      h2 {
+        color: #0b6b63;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        padding: 18px;
+        background: white;
+        border: 1px solid #d8ebe7;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px #c8ded9;
+      }
+
+      .card strong {
+        color: #0b6b63;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+        max-width: 600px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #b8d6d0;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      footer {
+        margin-top: 40px;
+        padding: 20px;
+        background: #0b6b63;
+        color: white;
+        text-align: center;
+      }
+
+      @keyframes show {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 650px) {
+        nav,
+        .grid {
+          display: block;
+        }
+
+        nav a {
+          display: inline-block;
+          margin: 10px 10px 0 0;
+        }
+
+        .card {
+          margin-bottom: 15px;
+        }
+
+        .hero h1 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <strong>Shaurya Venkta</strong>
+        <div>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div class="col">
-          <strong>Frontend</strong>
-          <p>HTML, CSS, JavaScript, React, responsive design</p>
-        </div>
-        <div class="col">
-          <strong>Backend</strong>
-          <p>Node.js, Express, REST APIs, MongoDB, deployment basics</p>
-        </div>
-      </div>
-    </section>
+      </nav>
+    </header>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="row">
-        <div class="col">
-          <strong>FFT-based Signal Analyzer</strong>
-          <p>Tool for frequency analysis and simple filtering of time-series data.</p>
-        </div>
-        <div class="col">
-          <strong>Real-time Chat App</strong>
-          <p>Full-stack chat using WebSockets, with authentication and persistence.</p>
-        </div>
-        <div class="col">
-          <strong>Personal Portfolio</strong>
-          <p>Simple responsive site showcasing projects and resume.</p>
-        </div>
-      </div>
-    </section>
+    <main class="container">
+      <section class="hero" id="home">
+        <h1>Hi, I’m Shaurya — I build data-driven applications</h1>
+        <p>
+          I work with signal processing, machine learning, and full-stack
+          development to create practical and useful applications.
+        </p>
+        <a class="button" href="#projects">View Projects</a>
+        <a class="button" href="#contact">Get in Touch</a>
+      </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>If you'd like to collaborate or see details, email: <a href="mailto:shauryavenkta31@gmail.com">shauryavenkta31@gmail.com</a></p>
-    </section>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I am a motivated BCA graduate with experience in data analysis,
+          signal processing, and full-stack application development. I enjoy
+          learning new technologies and solving real-world problems.
+        </p>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="grid">
+          <article class="card">
+            <strong>Data Science</strong>
+            <p>Python, NumPy, Pandas, SciPy, scikit-learn, and FFT analysis.</p>
+          </article>
+          <article class="card">
+            <strong>Frontend</strong>
+            <p>HTML, CSS, JavaScript, React, and responsive web design.</p>
+          </article>
+          <article class="card">
+            <strong>Backend</strong>
+            <p>Node.js, Express, REST APIs, MongoDB, and deployment basics.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+          <article class="card">
+            <strong>FFT-based Signal Analyzer</strong>
+            <p>Analyzes frequencies and filters time-series data.</p>
+          </article>
+          <article class="card">
+            <strong>Real-time Chat App</strong>
+            <p>A full-stack chat application with authentication and storage.</p>
+          </article>
+          <article class="card">
+            <strong>Personal Portfolio</strong>
+            <p>A responsive website for presenting my skills and projects.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:shauryavenkta31@gmail.com">shauryavenkta31@gmail.com</a></p>
+        <form action="mailto:shauryavenkta31@gmail.com" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Your message" required></textarea>
+          <button class="button" type="submit">Send Message</button>
+        </form>
+      </section>
+    </main>
 
     <footer>
       <p>&copy; 2026 Shaurya Venkta</p>
     </footer>
-  </main>
-</body>
+  </body>
 </html>
