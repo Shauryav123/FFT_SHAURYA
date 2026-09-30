@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript Grade Calculator</title>
+  </head>
+  <body>
+    <h1>Grade Calculator</h1>
+
+    <form id="gradeForm">
+      <label>Student Name: <input type="text" id="studentName" required></label>
+      <br><br>
+      <label>English: <input type="number" id="english" min="0" max="100" required></label>
+      <br><br>
+      <label>Mathematics: <input type="number" id="maths" min="0" max="100" required></label>
+      <br><br>
+      <label>Science: <input type="number" id="science" min="0" max="100" required></label>
+      <br><br>
+      <label>Computer: <input type="number" id="computer" min="0" max="100" required></label>
+      <br><br>
+      <label>Social Science: <input type="number" id="socialScience" min="0" max="100" required></label>
+      <br><br>
+      <button type="submit">Calculate Grade</button>
+    </form>
+
+    <section id="result" hidden>
+      <h2>Result</h2>
+      <p>Student: <span id="resultName"></span></p>
+      <p>Total Marks: <span id="total"></span> / 500</p>
+      <p>Average: <span id="average"></span></p>
+      <p>Percentage: <span id="percentage"></span>%</p>
+      <p>Grade: <span id="grade"></span></p>
+      <p>Result: <span id="status"></span></p>
+    </section>
+
+    <script>
+      document.getElementById("gradeForm").onsubmit = function () {
+        var name = document.getElementById("studentName").value;
+        var english = Number(document.getElementById("english").value);
+        var maths = Number(document.getElementById("maths").value);
+        var science = Number(document.getElementById("science").value);
+        var computer = Number(document.getElementById("computer").value);
+        var socialScience = Number(document.getElementById("socialScience").value);
+        var total = english + maths + science + computer + socialScience;
+        var average = total / 5;
+        var grade, status;
+
+        if (average >= 90) grade = "A+";
+        else if (average >= 80) grade = "A";
+        else if (average >= 70) grade = "B";
+        else if (average >= 60) grade = "C";
+        else if (average >= 50) grade = "D";
+        else grade = "F";
+
+        if (english >= 35 && maths >= 35 && science >= 35 &&
+            computer >= 35 && socialScience >= 35) {
+          status = "Pass";
+        } else {
+          status = "Fail";
+        }
+
+        document.getElementById("resultName").innerHTML = name;
+        document.getElementById("total").innerHTML = total;
+        document.getElementById("average").innerHTML = average.toFixed(2);
+        document.getElementById("percentage").innerHTML = average.toFixed(2);
+        document.getElementById("grade").innerHTML = grade;
+        document.getElementById("status").innerHTML = status;
+        document.getElementById("result").hidden = false;
+        return false;
+      };
+    </script>
+  </body>
+</html>
