@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Student Result</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #f2f2f2;
+      }
+      .box {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+      }
+      input, select, button {
+        padding: 8px;
+      }
+      input, select {
+        width: 95%;
+        margin: 5px 0 12px;
+      }
+      button {
+        background: #06c;
+        color: white;
+        border: 0;
+        margin: 5px 0 12px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #aaa;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>Student Result</h1>
+
+      <label>Search Student</label>
+      <input id="search" type="text" placeholder="Enter name or roll number" />
+      <button onclick="searchStudent()">Search</button><br>
+
+      <label>Student Name</label>
+      <input id="name" type="text" placeholder="Enter name" />
+
+      <label>Roll Number</label>
+      <input id="roll" type="text" placeholder="Enter roll number" />
+
+      <h3>Enter Marks</h3>
+      <input id="html" type="number" placeholder="HTML marks" />
+      <input id="css" type="number" placeholder="CSS marks" />
+      <input id="javascript" type="number" placeholder="JavaScript marks" />
+
+      <label>Filter Result</label>
+      <select id="filter">
+        <option value="All">Show All</option>
+        <option value="Pass">Pass Only</option>
+        <option value="Fail">Fail Only</option>
+      </select>
+
+      <br />
+      <button onclick="showResult()">Show Result</button>
+      <button onclick="clearDashboard()">Clear</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const savedStudents = [
+        {
+          name: "Aarav Sharma",
+          roll: "ST101",
+          resultHTML: `
+            <h2>Result</h2>
+            <p><b>Name:</b> Aarav Sharma</p>
+            <p><b>Roll Number:</b> ST101</p>
+            <table>
+              <tr><th>Subject</th><th>Marks</th></tr>
+              <tr><td>HTML</td><td>85</td></tr>
+              <tr><td>CSS</td><td>78</td></tr>
+              <tr><td>JavaScript</td><td>90</td></tr>
+            </table>
+            <p><b>Total:</b> 253/300</p>
+            <p><b>Percentage:</b> 84.33%</p>
+            <p><b>Grade:</b> A</p>
+            <p><b>Result:</b> Pass</p>
+          `
+        },
+        {
+          name: "Diya Patel",
+          roll: "ST102",
+          resultHTML: `
+            <h2>Result</h2>
+            <p><b>Name:</b> Diya Patel</p>
+            <p><b>Roll Number:</b> ST102</p>
+            <table>
+              <tr><th>Subject</th><th>Marks</th></tr>
+              <tr><td>HTML</td><td>65</td></tr>
+              <tr><td>CSS</td><td>72</td></tr>
+              <tr><td>JavaScript</td><td>68</td></tr>
+            </table>
+            <p><b>Total:</b> 205/300</p>
+            <p><b>Percentage:</b> 68.33%</p>
+            <p><b>Grade:</b> B</p>
+            <p><b>Result:</b> Pass</p>
+          `
+        }
+      ];
+
+      function showResult() {
+        const name = document.getElementById("name").value;
+        const roll = document.getElementById("roll").value;
+        const html = Number(document.getElementById("html").value);
+        const css = Number(document.getElementById("css").value);
+        const javascript = Number(document.getElementById("javascript").value);
+        const total = html + css + javascript;
+        const percentage = total / 3;
+        const status =
+          html >= 40 && css >= 40 && javascript >= 40 ? "Pass" : "Fail";
+        let grade = "F";
+
+        if (status === "Pass") {
+          if (percentage >= 90) grade = "A+";
+          else if (percentage >= 75) grade = "A";
+          else if (percentage >= 60) grade = "B";
+          else if (percentage >= 50) grade = "C";
+          else grade = "D";
+        }
+
+        const filter = document.getElementById("filter").value;
+
+        if (filter !== "All" && filter !== status) {
+          document.getElementById("result").innerHTML =
+            "<p>No result matches this filter.</p>";
+          return;
+        }
+
+        const resultHTML = `
+          <h2>Result</h2>
+          <p><b>Name:</b> ${name}</p>
+          <p><b>Roll Number:</b> ${roll}</p>
+          <table>
+            <tr><th>Subject</th><th>Marks</th></tr>
+            <tr><td>HTML</td><td>${html}</td></tr>
+            <tr><td>CSS</td><td>${css}</td></tr>
+            <tr><td>JavaScript</td><td>${javascript}</td></tr>
+          </table>
+          <p><b>Total:</b> ${total}/300</p>
+          <p><b>Percentage:</b> ${percentage.toFixed(2)}%</p>
+          <p><b>Grade:</b> ${grade}</p>
+          <p><b>Result:</b> ${status}</p>
+        `;
+
+        savedStudents.push({ name, roll, resultHTML });
+        document.getElementById("result").innerHTML = resultHTML;
+      }
+
+      function searchStudent() {
+        const search = document.getElementById("search").value.toLowerCase();
+        const student = savedStudents.find((item) =>
+          item.name.toLowerCase().includes(search) ||
+          item.roll.toLowerCase().includes(search)
+        );
+
+        document.getElementById("result").innerHTML = student
+          ? student.resultHTML
+          : "<p>Student not found.</p>";
+      }
+
+      function clearDashboard() {
+        document.getElementById("search").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("roll").value = "";
+        document.getElementById("html").value = "";
+        document.getElementById("css").value = "";
+        document.getElementById("javascript").value = "";
+        document.getElementById("filter").value = "All";
+        document.getElementById("result").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
