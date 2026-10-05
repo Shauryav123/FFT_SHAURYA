@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+</head>
+<body>
+    <form>
+        <h1>DOM Example</h1>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required><br><br>
+        <label for="email">Password:</label>
+        <input type="email" id="password" placeholder="Enter your password" required><br><br>
+        <button type="button" id="clear" onclick="clearFields()">Clear</button>
+        <button type="button" id="submit" onclick="submitForm(event)">Submit</button>
+        <p id="output"></p>
+
+        <p>Hello Shaurya</p>
+        <button type="button" id="change" class="change" onclick="Btn()">Change</button>
+        <script>
+            const password = "SHAurya123!";
+            function Btn(){
+                // alert("I'm an alert box!");
+                document.getElementsByClassName("change")[0].innerHTML = "Changed";
+            }
+            function clearFields() {
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("output").innerHTML = "";
+            }
+
+            function submitForm(event) {
+                event.preventDefault(); // Prevent form submission
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                console.log("Name: " + name);
+                console.log("Password: " + password);
+                if (name === "" || email === "") {
+                    document.getElementById("output").innerHTML = "Please fill in all fields.";
+                    const output = document.getElementById("output");
+                    output.style.color = "red";
+                    return;
+                } else if (document.getElementById("password").value !== password) {
+                    document.getElementById("output").innerHTML = "Incorrect password!";
+                    const output = document.getElementById("output");
+                    output.style.color = "red";
+                    return;
+                }else{
+                document.getElementById("output").innerHTML = "Login successful!";
+                const output = document.getElementById("output");
+                output.style.color = "green";}
+            }
+        </script>
+    </form>
+</body>
+</html>

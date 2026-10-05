@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <title>Krishna Special</title>
+    <style>
+        h1{
+            text-align: center;
+            font-size: 50px;
+        }
+
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            /* transition: transform 0.5s ease; */
+            border-radius: 10px;
+            background: none;
+            animation: shaurya 3s ease-in-out infinite;
+            /* animation-duration: 1s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            animation-delay: 1s; */
+        }
+
+        @keyframes shaurya {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        div{
+            border: 5px solid black;
+            margin: 20px;
+            padding-bottom: 100px;
+            background: aliceblue;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* img:hover{
+            transform: scale(1.1);
+        } */
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Krishna Special</h1>
+    <marquee behaviour="scroll" direction="left"><img src="Images/Krishna.jpg" alt="Krishna"></marquee>
+    </div>
+</body>
+</html>

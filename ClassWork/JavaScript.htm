@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    <h1>JavaScript</h1>
+    <script>
+        //BASIC START
+        let message = "Hello, World!";
+        document.write(message); 
+        console.log("Hello, World!");
+        document.write("<br>");
+        var a= prompt("Enter a number: ");
+        var b= prompt("Enter another number: ");
+        var sum = parseInt(a) + parseInt(b);
+        document.writeln("a: " + a + "<br>");
+        document.writeln("b: " + b + "<br>");
+        document.writeln("sum: " + sum + "<br>");
+
+        //CONDITIONAL STATEMENTS
+        let boy= Number(prompt("Enter boy's age: "));
+        let girl= Number(prompt("Enter girl's age: "));
+        if (boy >= 21){
+            document.write("You are eligible to marry");
+        }else if(girl >= 18){
+            document.write("You are eligible to marry");
+        }else {
+            document.write("you are still kids");
+        }
+
+        //SWITCH CASE
+        let day = Number(prompt("Enter a day of the week: "));
+        switch (day) {
+            case 1:
+                document.write("Monday");
+                break;
+            case 2:
+                document.write("Tuesday");
+                break;
+            case 3:
+                document.write("Wednesday");
+                break;
+            case 4, 11, 18, 25:
+                document.write("Thursday");
+                break;
+            case 5:
+                document.write("Friday");
+                break;
+            case 6:
+                document.write("Saturday");
+                break;
+            case 7:
+                document.write("Sunday");
+                break;
+            default:
+                document.write("Invalid day");
+        }
+
+        //LOOPING STATEMENTS
+        for (let i = 1; i <= 10; i++) {
+            document.write(i + "<br>");
+        }
+
+        // while loop
+        let j = 1;
+        while (j <= 10) {
+            document.write(j + "<br>");
+            j++;
+        }
+
+        // do while loop
+        let k = 1;
+        do {
+            document.write(k + "<br>");
+            k++;
+        } while (k <= 10);
+    </script>
+</body>
+</html>
