@@ -1,0 +1,35 @@
+{
+  "name": "decision-duel",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Decision Duel - A real-time group decision-making website built with React.js. Stop arguing. Start dueling.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/**/*.test.js",
+    "deploy:rules": "node scripts/deployRules.mjs",
+    "deploy": "vite build && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.3",
+    "firebase": "^10.14.1",
+    "framer-motion": "^11.11.17",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "vite": "^5.4.11"
+  }
+}

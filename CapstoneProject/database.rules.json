@@ -1,0 +1,45 @@
+{
+  "rules": {
+    "rooms": {
+      "$roomCode": {
+        ".read": true,
+        ".write": "newData.exists()",
+        "metadata": {
+          ".validate": "newData.hasChildren(['room_id', 'room_code', 'host_name', 'title', 'status', 'created_at']) && newData.child('room_code').val() === $roomCode"
+        },
+        "players": {
+          "$playerId": {
+            ".validate": "newData.hasChildren(['player_id', 'nickname', 'joined_at']) && newData.child('player_id').val() === $playerId"
+          }
+        },
+        "options": {
+          "$optionId": {
+            ".validate": "newData.hasChildren(['option_id', 'label']) && newData.child('label').val().length > 0 && newData.child('label').val().length <= 150"
+          }
+        },
+        "duels": {
+          "$duelId": {
+            ".validate": "newData.hasChildren(['duel_id', 'round_no', 'duel_index', 'option_a_id'])"
+          }
+        },
+        "votes": {
+          "$duelId": {
+            "$playerId": {
+              ".validate": "newData.hasChildren(['vote_id', 'duel_id', 'player_id', 'option_id', 'created_at']) && newData.child('duel_id').val() === $duelId && newData.child('player_id').val() === $playerId"
+            }
+          }
+        },
+        "tiebreak": {
+          ".validate": "newData.hasChildren(['duel_id', 'status', 'started_at'])"
+        },
+        "results": {
+          ".validate": "newData.hasChildren(['champion_option_id', 'completed_at'])"
+        }
+      }
+    },
+    "$other": {
+      ".read": false,
+      ".write": false
+    }
+  }
+}

@@ -1,0 +1,806 @@
+{
+  "users": [
+    {
+      "user_id": "usr_demo_shaurya",
+      "full_name": "Shaurya Venkta",
+      "email": "shaurya@decisionduel.app",
+      "password_hash": "ZGVtbzEyMw==",
+      "avatar": "⚡",
+      "role": "Host / Admin",
+      "created_at": 1760160000000
+    },
+    {
+      "user_id": "usr_demo_priya",
+      "full_name": "Priya Sharma",
+      "email": "priya@decisionduel.app",
+      "password_hash": "ZGVtbzEyMw==",
+      "avatar": "🦊",
+      "role": "Member",
+      "created_at": 1760160100000
+    },
+    {
+      "user_id": "usr_demo_aarav",
+      "full_name": "Aarav Patel",
+      "email": "aarav@decisionduel.app",
+      "password_hash": "ZGVtbzEyMw==",
+      "avatar": "🚀",
+      "role": "Member",
+      "created_at": 1760160200000
+    }
+  ],
+  "rooms": {
+    "DUEL26": {
+      "room": {
+        "room_id": "room_DUEL26_seed",
+        "room_code": "DUEL26",
+        "host_name": "Shaurya Venkta",
+        "host_user_id": "usr_demo_shaurya",
+        "title": "Where should we eat tonight?",
+        "status": "lobby",
+        "current_round": 1,
+        "total_rounds": 3,
+        "initial_option_count": 8,
+        "current_duel_id": null,
+        "champion_option_id": null,
+        "allow_veto": true,
+        "active_filters": {
+          "vegOnly": false,
+          "maxPrice": null,
+          "quickOnly": false
+        },
+        "created_at": 1760160300000,
+        "started_at": null,
+        "completed_at": null
+      },
+      "players": [
+        {
+          "player_id": "player_shaurya_1",
+          "room_id": "room_DUEL26_seed",
+          "user_id": "usr_demo_shaurya",
+          "nickname": "Shaurya",
+          "is_host": true,
+          "is_bot": false,
+          "joined_at": 1760160300000
+        },
+        {
+          "player_id": "player_priya_2",
+          "room_id": "room_DUEL26_seed",
+          "user_id": "usr_demo_priya",
+          "nickname": "Priya",
+          "is_host": false,
+          "is_bot": false,
+          "joined_at": 1760160310000
+        },
+        {
+          "player_id": "player_aarav_3",
+          "room_id": "room_DUEL26_seed",
+          "user_id": "usr_demo_aarav",
+          "nickname": "Aarav",
+          "is_host": false,
+          "is_bot": false,
+          "joined_at": 1760160320000
+        },
+        {
+          "player_id": "player_rohan_4",
+          "room_id": "room_DUEL26_seed",
+          "user_id": null,
+          "nickname": "Rohan",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1760160330000
+        },
+        {
+          "player_id": "player_mv3g44jx_h1sh",
+          "room_id": "room_DUEL26_seed",
+          "user_id": "usr_demo_shaurya",
+          "nickname": "Player_5",
+          "is_host": false,
+          "is_bot": false,
+          "joined_at": 1791700327437
+        }
+      ],
+      "options": [
+        {
+          "option_id": "opt_DUEL26_1",
+          "room_id": "room_DUEL26_seed",
+          "label": "Woodfire Neapolitan Pizza",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍕",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_DUEL26_2",
+          "room_id": "room_DUEL26_seed",
+          "label": "Authentic Masala Dosa & Filter Coffee",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥞",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_DUEL26_3",
+          "room_id": "room_DUEL26_seed",
+          "label": "Royal Hyderabadi Biryani House",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍲",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_DUEL26_4",
+          "room_id": "room_DUEL26_seed",
+          "label": "Street Style Tacos & Nachos",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🌮",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_DUEL26_5",
+          "room_id": "room_DUEL26_seed",
+          "label": "Ramen & Gyoza Noodle Bar",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍜",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_DUEL26_6",
+          "room_id": "room_DUEL26_seed",
+          "label": "Gourmet Smash Burgers & Shakes",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍔",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        }
+      ],
+      "duels": [],
+      "votes": [],
+      "tiebreak_state": null,
+      "updated_at": 1791700904639
+    },
+    "DM2QG4": {
+      "room": {
+        "room_id": "room_DM2QG4_mv3ffjvc",
+        "room_code": "DM2QG4",
+        "host_name": "Shaurya Venkta",
+        "host_user_id": "usr_demo_shaurya",
+        "title": "Where should we eat tonight?",
+        "status": "tiebreak",
+        "current_round": 1,
+        "current_duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+        "champion_option_id": null,
+        "allow_veto": true,
+        "active_filters": {
+          "vegOnly": false,
+          "maxPrice": "$$$",
+          "quickOnly": false
+        },
+        "created_at": 1791699180888,
+        "started_at": 1791699828341,
+        "completed_at": null,
+        "total_rounds": 3,
+        "initial_option_count": 8
+      },
+      "players": [
+        {
+          "player_id": "player_mv3ffjvc_host",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "user_id": "usr_demo_shaurya",
+          "nickname": "Shaurya Venkta",
+          "is_host": true,
+          "is_bot": false,
+          "joined_at": 1791699180888
+        },
+        {
+          "player_id": "player_demo_0_mv3ffolf",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "nickname": "Aarav",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1791699187011
+        },
+        {
+          "player_id": "player_demo_1_mv3ffolf",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "nickname": "Priya",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1791699187012
+        },
+        {
+          "player_id": "player_demo_2_mv3ffolf",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "nickname": "Rohan",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1791699187013
+        }
+      ],
+      "options": [
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_1_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Woodfire Neapolitan Pizza",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍕",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_2_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Spicy Korean Fried Chicken",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍗",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_3_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Authentic Masala Dosa & Filter Coffee",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥞",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_4_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Street Style Tacos & Nachos",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🌮",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_5_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Ramen & Gyoza Noodle Bar",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍜",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_6_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Royal Hyderabadi Biryani House",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍲",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_7_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Gourmet Smash Burgers & Shakes",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍔",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_8_mv3ft6be",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "label": "Mediterranean Falafel & Mezze Platter",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥙",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        }
+      ],
+      "duels": [
+        {
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "round_no": 1,
+          "duel_index": 1,
+          "option_a_id": "opt_room_DM2QG4_mv3ffjvc_1_mv3ft6be",
+          "option_b_id": "opt_room_DM2QG4_mv3ffjvc_5_mv3ft6be",
+          "winner_id": "opt_room_DM2QG4_mv3ffjvc_1_mv3ft6be",
+          "is_bye": false,
+          "won_by_tiebreak": true,
+          "tiebreak_type": "api_trivia",
+          "tiebreak_detail": "OpenTDB API Trivia Duel (Pop Culture)"
+        },
+        {
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "round_no": 1,
+          "duel_index": 2,
+          "option_a_id": "opt_room_DM2QG4_mv3ffjvc_6_mv3ft6be",
+          "option_b_id": "opt_room_DM2QG4_mv3ffjvc_3_mv3ft6be",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        },
+        {
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d3_mv3ftfg5_4",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "round_no": 1,
+          "duel_index": 3,
+          "option_a_id": "opt_room_DM2QG4_mv3ffjvc_7_mv3ft6be",
+          "option_b_id": "opt_room_DM2QG4_mv3ffjvc_2_mv3ft6be",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        },
+        {
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d4_mv3ftfg5_6",
+          "room_id": "room_DM2QG4_mv3ffjvc",
+          "round_no": 1,
+          "duel_index": 4,
+          "option_a_id": "opt_room_DM2QG4_mv3ffjvc_8_mv3ft6be",
+          "option_b_id": "opt_room_DM2QG4_mv3ffjvc_4_mv3ft6be",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        }
+      ],
+      "votes": [
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0_player_mv3ffjvc_host",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0",
+          "player_id": "player_mv3ffjvc_host",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_1_mv3ft6be",
+          "created_at": 1791699831678
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0_player_demo_0_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0",
+          "player_id": "player_demo_0_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_5_mv3ft6be",
+          "created_at": 1791699831678
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0_player_demo_1_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0",
+          "player_id": "player_demo_1_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_1_mv3ft6be",
+          "created_at": 1791699831678
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0_player_demo_2_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d1_mv3ftfg5_0",
+          "player_id": "player_demo_2_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_5_mv3ft6be",
+          "created_at": 1791699831678
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2_player_mv3ffjvc_host",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+          "player_id": "player_mv3ffjvc_host",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_6_mv3ft6be",
+          "created_at": 1791699849555
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2_player_demo_0_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+          "player_id": "player_demo_0_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_3_mv3ft6be",
+          "created_at": 1791699849555
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2_player_demo_1_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+          "player_id": "player_demo_1_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_6_mv3ft6be",
+          "created_at": 1791699849555
+        },
+        {
+          "vote_id": "vote_duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2_player_demo_2_mv3ffolf",
+          "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+          "player_id": "player_demo_2_mv3ffolf",
+          "option_id": "opt_room_DM2QG4_mv3ffjvc_3_mv3ft6be",
+          "created_at": 1791699849555
+        }
+      ],
+      "tiebreak_state": {
+        "duel_id": "duel_room_DM2QG4_mv3ffjvc_r1_d2_mv3ftfg5_2",
+        "option_a_id": "opt_room_DM2QG4_mv3ffjvc_6_mv3ft6be",
+        "option_b_id": "opt_room_DM2QG4_mv3ffjvc_3_mv3ft6be",
+        "game_type": "api_trivia",
+        "status": "playing",
+        "score_a": 0,
+        "score_b": 0,
+        "rps_rounds": [],
+        "reaction_ms_a": null,
+        "reaction_ms_b": null,
+        "api_payload": {
+          "isLiveApi": false,
+          "category": "Entertainment & Film",
+          "question": "Which animated film won the Oscar for Best Animated Feature in 2019?",
+          "correct_answer": "Spider-Man: Into the Spider-Verse",
+          "options": [
+            "Incredibles 2",
+            "Spider-Man: Into the Spider-Verse",
+            "Isle of Dogs",
+            "Toy Story 4"
+          ]
+        },
+        "started_at": 1791699853292,
+        "winner_option_id": null
+      },
+      "updated_at": 1791699999013
+    },
+    "ZCUHDV": {
+      "room": {
+        "room_id": "room_ZCUHDV_mv3ggyr0",
+        "room_code": "ZCUHDV",
+        "host_name": "Shaurya Venkta",
+        "host_user_id": "usr_demo_shaurya",
+        "title": "Where should we eat tonight?",
+        "status": "lobby",
+        "current_round": 1,
+        "current_duel_id": null,
+        "champion_option_id": null,
+        "allow_veto": true,
+        "active_filters": {
+          "vegOnly": false,
+          "maxPrice": null,
+          "quickOnly": false
+        },
+        "created_at": 1791700926444,
+        "started_at": null,
+        "completed_at": null
+      },
+      "players": [
+        {
+          "player_id": "player_mv3ggyr0_host",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "user_id": "usr_demo_shaurya",
+          "nickname": "Shaurya Venkta",
+          "is_host": true,
+          "is_bot": false,
+          "joined_at": 1791700926444
+        }
+      ],
+      "options": [
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_1_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Woodfire Neapolitan Pizza",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍕",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_2_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Spicy Korean Fried Chicken",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍗",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_3_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Authentic Masala Dosa & Filter Coffee",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥞",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_4_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Street Style Tacos & Nachos",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🌮",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_5_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Ramen & Gyoza Noodle Bar",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍜",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_6_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Royal Hyderabadi Biryani House",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍲",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_7_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Gourmet Smash Burgers & Shakes",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍔",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_ZCUHDV_mv3ggyr0_8_mv3gh20a",
+          "room_id": "room_ZCUHDV_mv3ggyr0",
+          "label": "Mediterranean Falafel & Mezze Platter",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥙",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        }
+      ],
+      "duels": [],
+      "votes": [],
+      "tiebreak_state": null,
+      "updated_at": 1791700930666
+    },
+    "G9G96G": {
+      "room": {
+        "room_id": "room_G9G96G_mvasp5bd",
+        "room_code": "G9G96G",
+        "host_name": "Shaurya",
+        "host_user_id": "usr_demo_shaurya",
+        "title": "Where should we eat tonight?",
+        "status": "dueling",
+        "current_round": 1,
+        "current_duel_id": "duel_room_G9G96G_mvasp5bd_r1_d1_mvasploc_0",
+        "champion_option_id": null,
+        "allow_veto": true,
+        "active_filters": {
+          "vegOnly": false,
+          "maxPrice": null,
+          "quickOnly": false
+        },
+        "created_at": 1792144726825,
+        "started_at": 1792144748029,
+        "completed_at": null,
+        "total_rounds": 3,
+        "initial_option_count": 8
+      },
+      "players": [
+        {
+          "player_id": "player_mvasp5bd_host",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "user_id": "usr_demo_shaurya",
+          "nickname": "Shaurya",
+          "is_host": true,
+          "is_bot": false,
+          "joined_at": 1792144726825
+        },
+        {
+          "player_id": "player_demo_0_mvasp6yj",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "nickname": "Aarav",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1792144728955
+        },
+        {
+          "player_id": "player_demo_1_mvasp6yj",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "nickname": "Priya",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1792144728956
+        },
+        {
+          "player_id": "player_demo_2_mvasp6yj",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "nickname": "Rohan",
+          "is_host": false,
+          "is_bot": true,
+          "joined_at": 1792144728957
+        }
+      ],
+      "options": [
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_1",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Woodfire Neapolitan Pizza",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍕",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_2",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Spicy Korean Fried Chicken",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍗",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_3",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Authentic Masala Dosa & Filter Coffee",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥞",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_4",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Street Style Tacos & Nachos",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🌮",
+          "price_tag": "$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_5",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Ramen & Gyoza Noodle Bar",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍜",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_6",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Royal Hyderabadi Biryani House",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍲",
+          "price_tag": "$$",
+          "is_veg": false,
+          "duration_tag": "Relaxed"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_7",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Gourmet Smash Burgers & Shakes",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🍔",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        },
+        {
+          "option_id": "opt_room_G9G96G_mvasp5bd_8",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "label": "Mediterranean Falafel & Mezze Platter",
+          "is_vetoed": false,
+          "vetoed_by": null,
+          "emoji": "🥙",
+          "price_tag": "$$",
+          "is_veg": true,
+          "duration_tag": "Quick"
+        }
+      ],
+      "duels": [
+        {
+          "duel_id": "duel_room_G9G96G_mvasp5bd_r1_d1_mvasploc_0",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "round_no": 1,
+          "duel_index": 1,
+          "option_a_id": "opt_room_G9G96G_mvasp5bd_5",
+          "option_b_id": "opt_room_G9G96G_mvasp5bd_7",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        },
+        {
+          "duel_id": "duel_room_G9G96G_mvasp5bd_r1_d2_mvasploc_2",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "round_no": 1,
+          "duel_index": 2,
+          "option_a_id": "opt_room_G9G96G_mvasp5bd_2",
+          "option_b_id": "opt_room_G9G96G_mvasp5bd_6",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        },
+        {
+          "duel_id": "duel_room_G9G96G_mvasp5bd_r1_d3_mvasploc_4",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "round_no": 1,
+          "duel_index": 3,
+          "option_a_id": "opt_room_G9G96G_mvasp5bd_4",
+          "option_b_id": "opt_room_G9G96G_mvasp5bd_1",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        },
+        {
+          "duel_id": "duel_room_G9G96G_mvasp5bd_r1_d4_mvasploc_6",
+          "room_id": "room_G9G96G_mvasp5bd",
+          "round_no": 1,
+          "duel_index": 4,
+          "option_a_id": "opt_room_G9G96G_mvasp5bd_3",
+          "option_b_id": "opt_room_G9G96G_mvasp5bd_8",
+          "winner_id": null,
+          "is_bye": false,
+          "won_by_tiebreak": false,
+          "tiebreak_type": null,
+          "tiebreak_detail": null
+        }
+      ],
+      "votes": [
+        {
+          "vote_id": "bonus_duel_room_G9G96G_mvasp5bd_r1_d1_mvasploc_0_1792144755003_msn",
+          "duel_id": "duel_room_G9G96G_mvasp5bd_r1_d1_mvasploc_0",
+          "player_id": "game_power_mvaspr23",
+          "option_id": "opt_room_G9G96G_mvasp5bd_7",
+          "is_bonus": true,
+          "created_at": 1792144755003
+        }
+      ],
+      "tiebreak_state": null,
+      "updated_at": 1792144755003
+    }
+  }
+}
