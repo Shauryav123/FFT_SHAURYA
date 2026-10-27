@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   MessageCircle,
   Sparkles,
+  LogOut,
 } from 'lucide-react';
 import {
   getRoomSnapshot,
@@ -25,6 +26,7 @@ import {
   getLocalPlayer,
   setLocalPlayer,
   joinRoom,
+  leaveRoom,
   addOption,
   removeOption,
   toggleVetoOption,
@@ -215,6 +217,19 @@ export default function LobbyPage() {
     }
   };
 
+  const handleLeaveRoom = async () => {
+    if (window.confirm('Are you sure you want to leave this room?')) {
+      try {
+        if (localPlayer) {
+          await leaveRoom(roomCode, localPlayer.player_id);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      navigate('/');
+    }
+  };
+
   const handleAddFriend = async (nameToAdd) => {
     const targetName = (nameToAdd || friendNameInput).trim();
     if (!targetName) return;
@@ -344,7 +359,7 @@ export default function LobbyPage() {
             </h1>
           </div>
 
-          {/* Ready Status Switch for current user */}
+          {/* Ready Status Switch and Leave Room for current user */}
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -366,6 +381,16 @@ export default function LobbyPage() {
                   <span>Click to Ready Up!</span>
                 </>
               )}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleLeaveRoom}
+              title="Leave this lobby"
+              className="px-3.5 py-2.5 rounded-2xl font-bold text-xs flex items-center gap-1.5 transition bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 active:scale-95 shadow-sm"
+            >
+              <LogOut className="w-4 h-4 text-rose-400" />
+              <span className="hidden sm:inline">Leave</span>
             </button>
           </div>
         </div>

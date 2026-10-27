@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CheckCircle2, Trophy, Swords, Sparkles, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Trophy, Swords, Sparkles, ArrowRight, LogOut } from 'lucide-react';
 import {
   getRoomSnapshot,
   subscribeToRoom,
   getLocalPlayer,
   advanceDuelWinner,
+  leaveRoom,
 } from '../services/realtimeStore';
 import { getRoundLabel } from '../services/bracketEngine';
 import InteractiveDuelGames from '../components/InteractiveDuelGames';
@@ -154,6 +155,19 @@ export default function DuelPage() {
     }
   };
 
+  const handleLeaveDuel = async () => {
+    if (window.confirm('Are you sure you want to leave this duel midgame? The match rounds will adjust for remaining players.')) {
+      try {
+        if (localPlayer) {
+          await leaveRoom(roomCode, localPlayer.player_id);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      navigate('/');
+    }
+  };
+
   return (
     <AuthGate roomCode={roomCode}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
@@ -202,8 +216,26 @@ export default function DuelPage() {
               <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
               <span>Mini-Game Decides Winner</span>
             </div>
+
+            <button
+              type="button"
+              onClick={handleLeaveDuel}
+              title="Leave match midgame"
+              className="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 hover:text-white text-xs font-bold transition flex items-center gap-1.5 active:scale-95 shadow-sm"
+            >
+              <LogOut className="w-3.5 h-3.5 text-rose-400" />
+              <span>Leave Match</span>
+            </button>
           </div>
         </div>
+
+        {/* Midgame Player Adjustment Notice */}
+        {snapshot.players?.length === 1 && (
+          <div className="rounded-2xl p-4 bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-semibold flex items-center gap-3">
+            <span className="text-base">⚠️</span>
+            <span>A player left the duel midgame. Match rounds have been dynamically adjusted so you can crown your champion without waiting!</span>
+          </div>
+        )}
 
         {/* Head-to-Head Contenders Clash & Live Match Score */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

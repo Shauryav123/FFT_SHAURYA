@@ -438,19 +438,12 @@ export function subscribeToRoom(roomCode, callback) {
  */
 export function getLocalPlayer(roomCode) {
   if (typeof window === 'undefined' || !roomCode) return null;
-  const raw = sessionStorage.getItem(SESSION_PLAYER_PREFIX + roomCode.toUpperCase());
+  const code = roomCode.toUpperCase();
+  const raw = sessionStorage.getItem(SESSION_PLAYER_PREFIX + code);
   if (raw) {
     try {
       return JSON.parse(raw);
     } catch {}
-  }
-  const code = roomCode.toUpperCase();
-  if (code === 'DUEL26' || code === 'DEMO26' || code === 'G9G96G' || code === 'DM2QG4' || code === 'CHAMP1') {
-    return {
-      player_id: 'p_demo_host',
-      nickname: 'Shaurya Venkta',
-      is_host: true,
-    };
   }
   return null;
 }
@@ -468,9 +461,9 @@ export function clearLocalPlayer(roomCode) {
 /**
  * Creates a room and writes to Firebase before returning
  */
-export async function createRoom({ hostName, decisionTitle, presetId = null, allowVeto = true }) {
-  const cleanHost = sanitizeText(hostName) || 'Host';
-  const cleanTitle = sanitizeText(decisionTitle) || 'Group Decision';
+export async function createRoom({ hostName, decisionTitle, presetId = null, allowVeto = true, hostNickname, title }) {
+  const cleanHost = sanitizeText(hostName || hostNickname) || 'Host';
+  const cleanTitle = sanitizeText(decisionTitle || title) || 'Group Decision';
 
   let roomCode = generateRoomCode();
   const db = getDatabaseInstance();
@@ -747,6 +740,135 @@ export async function kickPlayer(roomCode, hostPlayerId, targetPlayerId) {
     players: updatedPlayers,
     options: updatedOptions,
   });
+}
+
+/**
+ * Allows a player to leave a room either in the lobby or midgame.
+ * In lobby: cleans up player and unvetoes their options.
+ * Midgame: removes player, balances rounds, and adjusts match progression for remaining players.
+ */
+export async function leaveRoom(roomCode, playerId) {
+  if (!roomCode || !playerId) return null;
+  const code = roomCode.toUpperCase();
+  const snapshot = getRoomSnapshot(code);
+  if (!snapshot) {
+    clearLocalPlayer(code);
+    return null;
+  }
+
+  const leavingPlayer = (snapshot.players || []).find((p) => p.player_id === playerId);
+  if (!leavingPlayer) {
+    clearLocalPlayer(code);
+    return snapshot;
+  }
+
+  // Remove player from the room list
+  const remainingPlayers = (snapshot.players || []).filter((p) => p.player_id !== playerId);
+
+  // Unveto any options vetoed by the leaving player
+  const updatedOptions = (snapshot.options || []).map((opt) => {
+    if (opt.is_vetoed && (opt.vetoed_by === leavingPlayer.nickname || opt.vetoed_by === leavingPlayer.player_id)) {
+      return { ...opt, is_vetoed: false, vetoed_by: null };
+    }
+    return opt;
+  });
+
+  // If no players remain in the room, mark room as closed
+  if (remainingPlayers.length === 0) {
+    clearLocalPlayer(code);
+    const closedSnapshot = {
+      ...snapshot,
+      players: [],
+      options: updatedOptions,
+      room: {
+        ...snapshot.room,
+        status: 'closed',
+      },
+    };
+    return persistRoomSnapshot(code, closedSnapshot);
+  }
+
+  // If the host is leaving, promote the next available player to host
+  let updatedHostName = snapshot.room.host_name;
+  let updatedHostUserId = snapshot.room.host_user_id;
+  if (leavingPlayer.is_host && remainingPlayers.length > 0) {
+    remainingPlayers[0] = { ...remainingPlayers[0], is_host: true };
+    updatedHostName = remainingPlayers[0].nickname;
+    updatedHostUserId = remainingPlayers[0].user_id || null;
+  }
+
+  let updatedDuels = [...(snapshot.duels || [])];
+  let updatedRoom = {
+    ...snapshot.room,
+    host_name: updatedHostName,
+    host_user_id: updatedHostUserId,
+  };
+
+  // If leaving midgame (status is dueling or tiebreak):
+  // Adjust the active match and tournament rounds according to the left player!
+  if (snapshot.room.status === 'dueling' || snapshot.room.status === 'tiebreak') {
+    // If only 1 player remains in the game midgame:
+    if (remainingPlayers.length === 1) {
+      const activeDuel = updatedDuels.find((d) => d.duel_id === snapshot.room.current_duel_id) ||
+        updatedDuels.find((d) => !d.winner_id && !d.is_bye);
+
+      if (activeDuel) {
+        // Automatically resolve current active duel for contender A / active leader
+        const winnerOptionId = activeDuel.option_a_id;
+        const duelIndex = updatedDuels.findIndex((d) => d.duel_id === activeDuel.duel_id);
+        if (duelIndex !== -1) {
+          updatedDuels[duelIndex] = {
+            ...updatedDuels[duelIndex],
+            winner_id: winnerOptionId,
+            status: 'completed',
+            tiebreak_detail: `Opponent left midgame. Advanced for ${remainingPlayers[0].nickname}.`,
+          };
+        }
+
+        // Check if there are other pending duels in the current round
+        const currentRoundDuels = updatedDuels.filter((d) => d.round_no === snapshot.room.current_round);
+        const nextPending = currentRoundDuels.find((d) => !d.winner_id && !d.is_bye);
+
+        if (!nextPending) {
+          // Current round completed! Check round winners
+          const winners = currentRoundDuels.map((d) => d.winner_id).filter(Boolean);
+          if (winners.length === 1) {
+            // Champion crowned!
+            updatedRoom.status = 'finished';
+            updatedRoom.champion_option_id = winners[0];
+            updatedRoom.completed_at = Date.now();
+          } else if (winners.length > 1) {
+            // Build next round duels
+            const nextRound = snapshot.room.current_round + 1;
+            const nextRoundDuels = createRoundDuels(snapshot.room.room_id, nextRound, winners);
+            updatedDuels = [...updatedDuels, ...nextRoundDuels];
+            const nextPlayable = nextRoundDuels.find((d) => !d.is_bye) || nextRoundDuels[0];
+            updatedRoom.current_round = nextRound;
+            updatedRoom.current_duel_id = nextPlayable ? nextPlayable.duel_id : null;
+          }
+        } else {
+          updatedRoom.current_duel_id = nextPending.duel_id;
+        }
+      }
+    }
+  }
+
+  // Remove votes by leaving player
+  const updatedVotes = (snapshot.votes || []).filter((v) => v.player_id !== playerId);
+
+  const updatedSnapshot = {
+    ...snapshot,
+    players: remainingPlayers,
+    options: updatedOptions,
+    duels: updatedDuels,
+    votes: updatedVotes,
+    room: updatedRoom,
+    tiebreak: snapshot.room.status === 'tiebreak' && remainingPlayers.length <= 1 ? null : snapshot.tiebreak,
+    tiebreak_state: snapshot.room.status === 'tiebreak' && remainingPlayers.length <= 1 ? null : snapshot.tiebreak_state,
+  };
+
+  clearLocalPlayer(code);
+  return persistRoomSnapshot(code, updatedSnapshot);
 }
 
 /**
@@ -1140,27 +1262,64 @@ export async function addFriendPlayer(roomCode, friendNickname) {
 
 const authListeners = new Set();
 
+/** Session duration: 5 days in milliseconds */
+export const SESSION_DURATION_MS = 5 * 24 * 60 * 60 * 1000;
+
+/**
+ * Saves authenticated user session with a 5-day expiration timestamp.
+ */
+export function saveUserSession(user) {
+  if (!user) return null;
+  const now = Date.now();
+  const sessionUser = {
+    ...user,
+    savedAt: user.savedAt || now,
+    expiresAt: user.expiresAt || (now + SESSION_DURATION_MS),
+  };
+  try {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+    }
+  } catch {}
+  return sessionUser;
+}
+
 // Synchronize Firebase Auth state automatically
 if (typeof window !== 'undefined') {
   try {
     onFirebaseAuthStateChanged((fbUser) => {
       if (fbUser) {
-        const sessionUser = {
+        const raw = localStorage.getItem('dd_current_user_v2');
+        let existingSession = null;
+        try {
+          existingSession = raw ? JSON.parse(raw) : null;
+        } catch {}
+
+        // Check if existing session has expired
+        if (existingSession?.expiresAt && Date.now() > existingSession.expiresAt) {
+          localStorage.removeItem('dd_current_user_v2');
+          notifyAuthListeners(null);
+          return;
+        }
+
+        const sessionUser = saveUserSession({
           user_id: fbUser.uid,
           fullName: fbUser.displayName || fbUser.email?.split('@')[0] || 'Player',
           email: fbUser.email || '',
           avatar: fbUser.photoURL || '⚡',
-        };
-        try {
-          localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
-        } catch {}
+          savedAt: existingSession?.savedAt,
+          expiresAt: existingSession?.expiresAt,
+        });
         notifyAuthListeners(sessionUser);
       } else {
         const raw = localStorage.getItem('dd_current_user_v2');
         if (raw) {
           try {
             const parsed = JSON.parse(raw);
-            if (!parsed?.is_demo) {
+            if (parsed?.expiresAt && Date.now() > parsed.expiresAt) {
+              localStorage.removeItem('dd_current_user_v2');
+              notifyAuthListeners(null);
+            } else if (!parsed?.is_demo && !parsed?.user_id?.startsWith('u_')) {
               localStorage.removeItem('dd_current_user_v2');
               notifyAuthListeners(null);
             }
@@ -1177,24 +1336,24 @@ if (typeof window !== 'undefined') {
 }
 
 export function getCurrentUser() {
-  if (typeof window === 'undefined') return null;
+  if (typeof localStorage === 'undefined') return null;
   const raw = localStorage.getItem('dd_current_user_v2');
   if (raw) {
     try {
-      return JSON.parse(raw);
-    } catch {}
+      const user = JSON.parse(raw);
+      // Check 5-day expiration
+      if (user && user.expiresAt && Date.now() > user.expiresAt) {
+        localStorage.removeItem('dd_current_user_v2');
+        return null;
+      }
+      return user;
+    } catch {
+      localStorage.removeItem('dd_current_user_v2');
+      return null;
+    }
   }
-  const defaultUser = {
-    user_id: 'usr_demo_shaurya',
-    fullName: 'Shaurya Venkta',
-    email: 'shaurya@decisionduel.app',
-    avatar: '⚡',
-    is_demo: false,
-  };
-  try {
-    localStorage.setItem('dd_current_user_v2', JSON.stringify(defaultUser));
-  } catch {}
-  return defaultUser;
+  // Default to null: new visitors see sign-up / sign-in options like a standard website
+  return null;
 }
 
 export function subscribeToAuth(cb) {
@@ -1234,13 +1393,12 @@ export async function registerUser({ fullName, email, password, avatar = '⚡' }
   if (diag.isConfigured && typeof window !== 'undefined') {
     try {
       const cred = await firebaseSignUpWithEmail(cleanEmail, password, cleanName, avatar);
-      const sessionUser = {
+      const sessionUser = saveUserSession({
         user_id: cred.user.uid,
         fullName: cleanName,
         email: cleanEmail,
         avatar,
-      };
-      localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+      });
       notifyAuthListeners(sessionUser);
       return sessionUser;
     } catch (err) {
@@ -1275,13 +1433,12 @@ export async function registerUser({ fullName, email, password, avatar = '⚡' }
   existing.push(newUser);
   localStorage.setItem('dd_registered_users_v2', JSON.stringify(existing));
 
-  const sessionUser = {
+  const sessionUser = saveUserSession({
     user_id: newUser.user_id,
     fullName: newUser.fullName,
     email: newUser.email,
     avatar: newUser.avatar,
-  };
-  localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+  });
   notifyAuthListeners(sessionUser);
   return sessionUser;
 }
@@ -1294,13 +1451,12 @@ export async function loginUser({ email, password }) {
   if (diag.isConfigured && typeof window !== 'undefined') {
     try {
       const cred = await firebaseSignInWithEmail(cleanEmail, password);
-      const sessionUser = {
+      const sessionUser = saveUserSession({
         user_id: cred.user.uid,
         fullName: cred.user.displayName || cleanEmail.split('@')[0],
         email: cred.user.email || cleanEmail,
         avatar: cred.user.photoURL || '⚡',
-      };
-      localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+      });
       notifyAuthListeners(sessionUser);
       return sessionUser;
     } catch (err) {
@@ -1325,13 +1481,12 @@ export async function loginUser({ email, password }) {
     throw new Error('Invalid email or password.');
   }
 
-  const sessionUser = {
+  const sessionUser = saveUserSession({
     user_id: found.user_id,
     fullName: found.fullName,
     email: found.email,
     avatar: found.avatar,
-  };
-  localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+  });
   notifyAuthListeners(sessionUser);
   return sessionUser;
 }
@@ -1343,13 +1498,12 @@ export async function loginWithGoogle() {
   }
   try {
     const cred = await firebaseSignInWithGoogle();
-    const sessionUser = {
+    const sessionUser = saveUserSession({
       user_id: cred.user.uid,
       fullName: cred.user.displayName || cred.user.email?.split('@')[0] || 'Player',
       email: cred.user.email || '',
       avatar: cred.user.photoURL || '⚡',
-    };
-    localStorage.setItem('dd_current_user_v2', JSON.stringify(sessionUser));
+    });
     notifyAuthListeners(sessionUser);
     return sessionUser;
   } catch (err) {
@@ -1358,16 +1512,13 @@ export async function loginWithGoogle() {
 }
 
 export async function loginDemoUser() {
-  const demoUser = {
+  const demoUser = saveUserSession({
     user_id: 'u_demo_host',
     fullName: 'Demo Host',
     email: 'demo@decisionduel.app',
     avatar: '👑',
     is_demo: true,
-  };
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('dd_current_user_v2', JSON.stringify(demoUser));
-  }
+  });
   notifyAuthListeners(demoUser);
   return demoUser;
 }

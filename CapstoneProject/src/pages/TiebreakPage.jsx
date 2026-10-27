@@ -16,12 +16,15 @@ import {
   RefreshCw,
   Swords,
   CheckCircle2,
+  LogOut,
 } from 'lucide-react';
 import {
   getRoomSnapshot,
   subscribeToRoom,
   updateTiebreakState,
   completeTiebreakAndAdvance,
+  getLocalPlayer,
+  leaveRoom,
 } from '../services/realtimeStore';
 import {
   fetchTriviaQuestion,
@@ -37,10 +40,24 @@ export default function TiebreakPage() {
   const roomCode = (code || '').toUpperCase();
 
   const [snapshot, setSnapshot] = useState(() => getRoomSnapshot(roomCode));
+  const [localPlayer] = useState(() => getLocalPlayer(roomCode));
   const [apiLoading, setApiLoading] = useState(false);
   const [triviaSide, setTriviaSide] = useState('A'); // Which contender the player answers for
   const [selectedTriviaAnswer, setSelectedTriviaAnswer] = useState(null);
   const [challengeFact, setChallengeFact] = useState(null);
+
+  const handleLeaveTiebreak = async () => {
+    if (window.confirm('Are you sure you want to leave this tiebreaker? The rounds will adjust for remaining players.')) {
+      try {
+        if (localPlayer) {
+          await leaveRoom(roomCode, localPlayer.player_id);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      navigate('/');
+    }
+  };
 
   // Auto-advance countdown once a tiebreaker has a winner
   const [autoAdvanceSeconds, setAutoAdvanceSeconds] = useState(null);
@@ -396,10 +413,22 @@ export default function TiebreakPage() {
               Sudden Death Tiebreaker Arena
             </div>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-xs font-bold">
-              <Swords className="w-3.5 h-3.5 text-violet-400" />
-              Tied Votes Detected
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-xs font-bold">
+                <Swords className="w-3.5 h-3.5 text-violet-400" />
+                Tied Votes Detected
+              </span>
+
+              <button
+                type="button"
+                onClick={handleLeaveTiebreak}
+                title="Leave match"
+                className="px-3 py-1 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 hover:text-white text-xs font-bold transition flex items-center gap-1.5 active:scale-95 shadow-sm"
+              >
+                <LogOut className="w-3.5 h-3.5 text-rose-400" />
+                <span>Leave Match</span>
+              </button>
+            </div>
           </div>
 
           <div>

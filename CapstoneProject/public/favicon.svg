@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="duelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background squircle -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#duelGradient)"/>
+
+  <!-- Subtle inner border highlight -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5"/>
+
+  <!-- Decision Duel Swords Icon -->
+  <g transform="translate(8, 8) scale(2)" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#shadow)">
+    <!-- Sword 1 -->
+    <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
+    <line x1="13" x2="19" y1="19" y2="13"/>
+    <line x1="16" x2="20" y1="16" y2="20"/>
+    <line x1="19" x2="21" y1="21" y2="19"/>
+
+    <!-- Sword 2 -->
+    <polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/>
+    <line x1="5" x2="9" y1="14" y2="18"/>
+    <line x1="7" x2="4" y1="17" y2="20"/>
+    <line x1="3" x2="5" y1="19" y2="21"/>
+  </g>
+</svg>
